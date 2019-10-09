@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p sub{1..5}/ssub{1..4}/sssub{1..4}
+find . -type d -links 2 -print | xargs -I {} touch {}/file{1..5}
