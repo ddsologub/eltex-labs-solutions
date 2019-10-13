@@ -141,7 +141,7 @@ int main(void)
 		out_str(arr[i], 0, i);
 	}
 
-	for(int i = n; i >= 0; i--) {
+	for(int i = n-1; i >= 0; i--) {
 		free(arr[i]);
 	}
 	free(arr);
