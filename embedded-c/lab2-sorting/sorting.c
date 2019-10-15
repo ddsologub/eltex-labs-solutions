@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+int g_prmt_num = 0;
+
 int inp_str(char **string, int maxlen)
 {
 		char buf[maxlen];
@@ -110,6 +112,9 @@ int get_first_word_len(char *s)
 		len++;
 	}
 
+
+	g_prmt_num++;
+
 	return len;
 }
 
@@ -121,10 +126,14 @@ int compare_first_word_len(const void *p1, const void *p2)
 	return (get_first_word_len(*s1) - get_first_word_len(*s2));
 }
 
+enum sort_order {Asc, Desc};
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int n = 0;
+
+	enum sort_order order = Desc;
+
 	scanf("%d\n", &n);
 	const int MAXSTRLEN = 256;
 
@@ -133,13 +142,21 @@ int main(void)
 	for (int i = 0; i < n; i++) {
 		inp_str(&arr[i], MAXSTRLEN);
 	}
+	g_prmt_num = 0;
 
-	//TODO: Reverse function which inverse results of comparing functions
 	qsort(&arr[0], n, sizeof(char*), compare_first_word_len);
 
-	for(int i = 0; i < n; i++) {
-		out_str(arr[i], 0, i);
+	if (order == Asc) {
+		for(int i = 0; i < n; i++) {
+			out_str(arr[i], 0, i);
+		}
+	} else if (order == Desc) {
+		for (int i = n-1; i >= 0; i--) {
+			out_str(arr[i], 0, i);
+		}
 	}
+
+	printf("\nSorted with %d permutations\n", g_prmt_num);
 
 	for(int i = n-1; i >= 0; i--) {
 		free(arr[i]);
