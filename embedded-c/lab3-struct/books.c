@@ -25,7 +25,7 @@ void print_book(Book *cur_book)
 	printf("\n");
 }
 
-int cmp_book(const void *p1, const void *p2)
+int cmp_book_prices(const void *p1, const void *p2)
 {
 	Book **b1 = (Book**)p1;
 	Book **b2 = (Book**)p2;
@@ -47,7 +47,7 @@ int main(void) {
 		read_book(books[i]);
 	}
 
-	qsort(&books[0], n, sizeof(Book*), cmp_book);
+	qsort(&books[0], n, sizeof(Book*), cmp_book_prices);
 
 	for(int i = 0; i < n; i++)
 	{
