@@ -1,9 +1,9 @@
 CC=gcc
-CCFLAGS=-Wall
+CCFLAGS=-Wall -std=gnu99
 LDFLAGS=
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
-TARGET=sorting
+TARGET=./sorting
 
 all: $(TARGET)
 
