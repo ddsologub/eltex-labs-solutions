@@ -27,10 +27,11 @@ void print_book(Book *cur_book)
 
 int cmp_book(const void *p1, const void *p2)
 {
-	Book *b1 = *(Book**)p1;
-	Book *b2 = *(Book**)p2;
-	fprintf(stderr, "%d - %d\n", (b1->price), (b2->price));
-	return (b1->price - b2->price);
+	Book **b1 = (Book**)p1;
+	Book **b2 = (Book**)p2;
+	//fprintf(stderr, "%d - %d\n", (b1[0]->price), (b2[0]->price));
+	//fprintf(stderr, "%d - %d\n", (*b1)->price, (*b2)->price);
+	return (*b1)->price - (*b2)->price;
 }
 
 int main(void) {
