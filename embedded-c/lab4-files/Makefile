@@ -1,5 +1,5 @@
 CC=gcc
-CCFLAGS=-Wall -std=gnu99
+CCFLAGS=-g -Wall -std=gnu99
 LDFLAGS=
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
@@ -17,7 +17,7 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CCFLAGS) -c $<
 	
 test:
-	$(TARGET) < imdb250.txt
+	$(TARGET) imdb250.txt ' '
 
 clean:
 	rm -f *.o $(TARGET)
