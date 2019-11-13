@@ -1,13 +1,13 @@
 CC=gcc
 CCFLAGS=-g -Wall -std=gnu99
 LDFLAGS=
-SOURCES=$(wildcard *.c)
-OBJECTS=$(SOURCES:.c=.o)
-TARGET=./changechar
 
-all: $(TARGET)
+all: changechar changestring
 
-$(TARGET): $(OBJECTS)
+changechar: changechar.o
+	$(CC) -o $@ $^ $(LDFLAGS) 
+
+changestring: changestring.o
 	$(CC) -o $@ $^ $(LDFLAGS) 
 
 %.o: %.c %.h
@@ -17,7 +17,8 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CCFLAGS) -c $<
 	
 test:
-	$(TARGET) imdb250.txt ' '
+	changechar imdb250.txt ' '
+	changestring imdb250.txt The
 
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o changechar changestring
