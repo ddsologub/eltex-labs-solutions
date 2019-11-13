@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	char inp_ch = ' ';
+	char inp_ch = argv[2][0];
 	char foutname[255];
 	strcpy(foutname, argv[1]);
 	strcat(foutname, ".out");
