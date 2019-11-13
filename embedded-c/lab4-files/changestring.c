@@ -9,10 +9,12 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	char inp_ch = ' ';
 	char foutname[255];
 	strcpy(foutname, argv[1]);
 	strcat(foutname, ".out");
+
+	char * exclude_str = argv[2];
+
 
 	FILE *fin, *fout;
 	
@@ -26,14 +28,13 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	char ch = 0;
-	while(ch != EOF) {
-		//fread(&ch, sizeof(char), 1, fin);
-		ch = getc(fin);
-		if (ch != inp_ch) {
-			//fwrite(&ch, sizeof(char), 1, fout);
-			fputc(ch, fout);
+	char line[255];
+	while(fgets(line, 255, fin) != NULL) {
+
+		if (strstr(line, exclude_str) == NULL){
+			fputs(line, fout);
 		}
+	
 	}	
 
 	
